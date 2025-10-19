@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tặng em 20/10 ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Thiết lập cơ bản */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            /* Rất quan trọng: ẩn thanh cuộn để hiệu ứng rơi đẹp */
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        }
+
+        .card-container {
+            width: 90vw;
+            max-width: 400px;
+            perspective: 1500px;
+        }
+
+        .card {
+            width: 100%;
+            aspect-ratio: 5 / 7;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            /* Thêm z-index để thiệp nằm dưới tim rơi */
+            z-index: 5;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .card-front {
+            background: #ffffff;
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
+
+        .card-front .cute-image {
+            font-size: 80px; 
+            line-height: 1;
+        }
+
+        .card-front h2 {
+            font-size: 26px;
+            color: #d6336c; 
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive; 
+        }
+
+        .card-front p {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .card-front button {
+            margin-top: 25px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #e64980; 
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            /* Nút bấm phải có z-index cao hơn thiệp 1 chút */
+            position: relative;
+            z-index: 10;
+        }
+
+        .card-front button:hover {
+            background-color: #d6336c;
+            transform: scale(1.05);
+        }
+
+        .card-inside {
+            background: #fff0f6; 
+            transform: rotateY(180deg);
+        }
+
+        .card-inside h2 {
+            font-size: 24px;
+            color: #c2255c;
+            font-family: 'Dancing Script', cursive; 
+        }
+
+        .card-inside .message {
+            font-size: 17px;
+            color: #333;
+            line-height: 1.6;
+            margin-top: 20px;
+            max-height: 60%;
+            overflow-y: auto; 
+        }
+
+        .card-inside .hearts {
+            font-size: 30px;
+            color: #e64980;
+            margin-top: 20px;
+        }
+
+        /* --- PHẦN MỚI THÊM: HIỆU ỨNG MƯA TIM --- */
+        
+        /* Định dạng cho 1 trái tim/ngôi sao rơi */
+        .falling-particle {
+            position: absolute;
+            /* Bắt đầu ở phía trên màn hình */
+            top: -50px; 
+            
+            /* Nằm trên cùng */
+            z-index: 100; 
+            
+            /* Tên hiệu ứng và kiểu chạy */
+            animation: fall linear;
+            
+            /* Màu sắc tim/sao */
+            color: #e64980; 
+        }
+
+        /* Keyframe cho hiệu ứng rơi */
+        @keyframes fall {
+            0% {
+                /* Bắt đầu từ vị trí ban đầu */
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                /* Rơi xuống 105% chiều cao màn hình (biến mất ở đáy) */
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        /* --- KẾT THÚC PHẦN MỚI THÊM --- */
+
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card" id="card">
+            
+            <div class="card-face card-front">
+                <div class="cute-image">💌</div>
+                <h2>Tặng em, tình yêu của anh!</h2>
+                <p>(Một món quà nhỏ cho cô gái tuyệt vời nhất)</p>
+                <button id="openButton">
+                    Nhấn để mở 🎁
+                </button>
+            </div>
+            
+            <div class="card-face card-inside">
+                <h2>Chúc mừng 20/10, em yêu!</h2>
+                <p class="message">
+                    Chúc bé iu của anh một ngày 20/10 thật rạng rỡ, xinh đẹp và ngập tràn hạnh phúc. Cảm ơn em đã luôn ở bên, là nguồn động lực và niềm vui của anh.
+                    <br><br>
+                    Yêu em rất rất nhiều!
+                </p>
+                <div class="hearts">
+                    ❤️ 💖 ❤️
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('card');
+        const openButton = document.getElementById('openButton');
+        const body = document.body; // Lấy thẻ body
+
+        // Danh sách các icon sẽ rơi (tim và sao)
+        const particles = ['❤️', '💖', '✨', '⭐', '🌸'];
+
+        openButton.addEventListener('click', () => {
+            // 1. Vô hiệu hóa nút bấm
+            openButton.disabled = true;
+
+            // 2. Kích hoạt cơn mưa tim!
+            createParticleRain();
+
+            // 3. Đợi 1 chút (300ms) rồi mới lật thiệp
+            // Điều này làm hiệu ứng mượt hơn, mưa rơi trước, thiệp lật sau
+            setTimeout(() => {
+                card.classList.add('is-flipped');
+            }, 300);
+        });
+
+        // Hàm tạo ra các hạt mưa
+        function createParticleRain() {
+            // Số lượng hạt mưa
+            const particleCount = 30; 
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('falling-particle');
+                
+                // Chọn ngẫu nhiên 1 icon trong danh sách
+                particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+                
+                // --- Random hóa để trông tự nhiên ---
+                
+                // 1. Vị trí bắt đầu (chiều ngang)
+                particle.style.left = Math.random() * 100 + 'vw';
+                
+                // 2. Thời gian rơi (từ 3 đến 5 giây)
+                particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                // 3. Rơi trễ (từ 0 đến 3 giây)
+                particle.style.animationDelay = (Math.random() * 3) + 's';
+                
+                // 4. Kích cỡ (từ 15px đến 25px)
+                particle.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                
+                // Thêm hạt mưa vào body
+                body.appendChild(particle);
+
+                // Tự động xóa hạt mưa khi nó rơi xong (để không làm lag máy)
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
